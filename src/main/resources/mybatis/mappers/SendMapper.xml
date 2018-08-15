@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.prowiser.api.mapper.SendMapper">
+  
+    <resultMap id="listPushDetail" type="PushDetail" autoMapping="true">
+      <id property="id" column="id"/>
+    </resultMap>
+
+    <select id="selectPushInfoNumByStatus" resultType="int">
+      select count(1) from tb_api_push
+        <where>
+          <if test="status==0">status=0 and retry=0</if>
+          <if test="status==2">status=2 and retry=0</if>
+          <if test="status==3">status=3 and retry=3</if>
+          and sign_id=#{sid}
+        </where>
+    </select>
+
+    <select id="selectPushInfoByStatus" resultMap="listPushDetail">
+      select * from tb_api_push
+        <where>
+          <if test="status==0">status=0 and retry=0</if>
+          <if test="status==2">status=2 and retry=0</if>
+          <if test="status==3">status=3 and retry=3</if>
+          and sign_id=#{sid}
+        </where>
+    </select>
+  
+    <insert id="insertSendSign" parameterType="SignDetail" keyProperty="id" useGeneratedKeys="true">
+      insert into tb_api_sign(sign,created_at) values (#{sign},#{createdAt})
+    </insert>
+  </mapper>
+  
+	
+
+
+  

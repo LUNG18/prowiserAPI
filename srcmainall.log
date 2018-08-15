@@ -1,0 +1,32 @@
+2018-08-09 11:33:36.142  INFO 9688 --- [restartedMain] com.prowiser.api.ApiApplication          : Starting ApiApplication on DESKTOP-QKDCGGH with PID 9688 (E:\lung\workspace\api\target\classes started by lung.liu in E:\lung\workspace\api)
+2018-08-09 11:33:36.142  INFO 9688 --- [restartedMain] com.prowiser.api.ApiApplication          : The following profiles are active: dev
+2018-08-09 11:33:36.146  INFO 9688 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@48791d13: startup date [Thu Aug 09 11:33:36 CST 2018]; root of context hierarchy
+2018-08-09 11:33:36.779  INFO 9688 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9001 (http)
+2018-08-09 11:33:36.779  INFO 9688 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-08-09 11:33:36.779  INFO 9688 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2018-08-09 11:33:36.829  INFO 9688 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-08-09 11:33:36.829  INFO 9688 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 683 ms
+2018-08-09 11:33:36.839  INFO 9688 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-08-09 11:33:36.839  INFO 9688 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-08-09 11:33:36.839  INFO 9688 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-08-09 11:33:36.839  INFO 9688 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-08-09 11:33:36.839  INFO 9688 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-08-09 11:33:36.908  INFO 9688 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-09 11:33:36.941  INFO 9688 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@48791d13: startup date [Thu Aug 09 11:33:36 CST 2018]; root of context hierarchy
+2018-08-09 11:33:36.955  INFO 9688 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/send/msg],methods=[POST]}" onto public java.lang.String com.prowiser.api.controller.MainController.sendWxMsg(org.springframework.web.multipart.MultipartFile,java.lang.String,javax.servlet.http.HttpServletRequest) throws org.apache.sling.commons.json.JSONException
+2018-08-09 11:33:36.955  INFO 9688 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[]}" onto public java.lang.String com.prowiser.api.controller.PageController.page(java.lang.String)
+2018-08-09 11:33:36.956  INFO 9688 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-08-09 11:33:36.957  INFO 9688 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-08-09 11:33:36.965  INFO 9688 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-09 11:33:36.965  INFO 9688 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-09 11:33:37.002  INFO 9688 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-08-09 11:33:37.049  INFO 9688 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-08-09 11:33:37.064  INFO 9688 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-08-09 11:33:37.065  INFO 9688 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-08-09 11:33:37.068  INFO 9688 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-08-09 11:33:37.087  INFO 9688 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9001 (http) with context path ''
+2018-08-09 11:33:37.088  INFO 9688 --- [restartedMain] com.prowiser.api.ApiApplication          : Started ApiApplication in 0.98 seconds (JVM running for 3131.976)
+2018-08-09 11:33:37.090  INFO 9688 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-08-09 11:33:48.181  INFO 9688 --- [Thread-100] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@48791d13: startup date [Thu Aug 09 11:33:36 CST 2018]; root of context hierarchy
+2018-08-09 11:33:48.182  INFO 9688 --- [Thread-100] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-08-09 11:33:48.183  INFO 9688 --- [Thread-100] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans

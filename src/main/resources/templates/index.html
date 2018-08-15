@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>模板消息</title>
+    <script src="jquery-2.2.1.js"></script>
+    <script src="jquery.form.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script>
+        $(function () {
+            //注册账户 获取token
+            $(".add").click(function () {
+                $.get('account/add',
+                    {
+                        key:$("#key").val(),
+                        appid:$("#appid").val(),
+                        secret:$("#secret").val()
+                    },
+                    function (token) {
+                        $("#token").val(token);
+                    }
+                )
+            });
+
+            //上传文件  发送模板请求
+            $('.upload').click(function(){
+                var files = $('#avatar').prop('files');
+                if(files.length==0){
+                    alert("json文件有误");
+                    return;
+                }
+                var data = new FormData();
+                data.append('file', files[0]);
+                data.append('sign', Math.random());
+                data.append('token', $("#token").val());
+                $.ajax({
+                    url: 'send/msg',
+                    type: 'POST',
+                    data: data,
+                    //cache: false,
+                    processData: false,
+                    contentType: false,
+                    success:function(ret){
+                        alert(ret)
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>注册account，并生成发送消息需要用的token</h3>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							&nbsp;key:&nbsp;&nbsp;
+						</button>
+					</span>
+                    <input type="text" class="form-control" style="width:50%" id="key" value="prowiser">
+                </div>
+            </div>
+            <br>
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							appid:
+						</button>
+					</span>
+                    <input type="text" class="form-control" style="width:50%" id="appid" value="wx3bd94678ca39cec2">
+                </div><!-- /input-group -->
+            </div>
+            <br>
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							appid:
+						</button>
+					</span>
+                    <input type="text" class="form-control" style="width:50%" id="secret" value="8feed99c5aa40d10b18258e88570a2a3">
+                    <a class="btn btn-default add">生成token</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h3>发送模板消息</h3>
+        <form class="form" role="form">
+            <div class="form-group">
+                <input type="file" id="avatar" name="file" accept=".json">
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        token:
+                    </button>
+                </span>
+                <input type="text" class="form-control" id="token" name="token" style="width: 50%" readonly>
+            </div>
+            <a class="btn btn-default upload">提交</a>
+        </form>
+    </div>
+</body>
+</html>
