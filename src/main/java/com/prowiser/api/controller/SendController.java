@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("send")
@@ -42,12 +43,10 @@ public class SendController {
             ret.put("msg", "token is wrong !");
             return ret.toString();
         }
-        String path = null;
+        int num = 0;
         try {
-            path = sendServiceImpl.uploadFile(file,sign);//文件上传 数据保存
-            log.info("uploadFile : "+path);
-            if(path.equals("error"))
-                throw new JSONException("parameter format error");
+            num = sendServiceImpl.uploadFile(file,sign);//文件上传 数据保存
+            log.info("uploadFile num = "+num);
         }catch (JSONException e) {
             log.info("uploadFile",e);
             ret.put("code",500);
@@ -58,16 +57,14 @@ public class SendController {
             ret.put("msg","unknown error !");
         }
 
-        String appId = (String) request.getSession().getAttribute("appid");
-        if(path!=null && !path.equals("error")){
-            int users = sendServiceImpl.getUserInfoNum();
-            int num = sendServiceImpl.getUserNum();
+        if(num != 0){
+            int users = sendServiceImpl.getUserInfoNum(sign);
             log.info("json user number = "+num+", push user number = "+users);
             if(users == num){
                 new Thread(){//另起线程发送
                     @Override
                     public void run() {
-                        if(appId == null){//ufs的请求直接调用接口
+                        if(sendServiceImpl.UFSlist.contains(token)){//ufs的请求直接调用接口
                             for(int i=0; i<3; i++){//发送失败 重试3次
                                 try {
                                     sendServiceImpl.sendUFSWxMsg(i,secret);
@@ -77,9 +74,16 @@ public class SendController {
                             }
                         }else{//其他请求走微信原生接口
                             try {
-                                AccessToken access_token = WXUtil.getWXToken(appId,secret);
-                                for(int i=0; i<3; i++) {//发送失败 重试3次
-                                    sendServiceImpl.sendOtherWxMsg(i, access_token.getAccessToken());
+                                HttpSession session = request.getSession();
+                                if(session!=null){
+                                    String appId = (String) session.getAttribute("appid");
+                                    if(appId!=null){
+                                        AccessToken access_token = WXUtil.getWXToken(appId,secret);
+                                        session.setAttribute("accessToken",access_token);
+                                        for(int i=0; i<3; i++) {//发送失败 重试3次
+                                            sendServiceImpl.sendOtherWxMsg(i, access_token.getAccessToken());
+                                        }
+                                    }
                                 }
                             } catch (Exception e) {
                                 log.info("send other Msg",e);

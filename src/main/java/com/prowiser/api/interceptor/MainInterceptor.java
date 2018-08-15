@@ -16,6 +16,7 @@ public class MainInterceptor implements HandlerInterceptor {
         //校验参数中的sign  防止重复提交
         String sign = request.getParameter("sign");
         if(sign==null && url.startsWith("/send/msg")){
+            log.info("sign为空");
             response.setCharacterEncoding("utf-8");
             response.getWriter().write("sign为空");
             return false;
@@ -25,6 +26,7 @@ public class MainInterceptor implements HandlerInterceptor {
         String _sign = (String) request.getSession().getAttribute("sign");
         log.info("session sign = "+_sign);
         if(sign!=null && _sign!=null && sign.equals(_sign)){
+            log.info("重复提交");
             response.setCharacterEncoding("utf-8");
             response.getWriter().write("请不要重复提交");
             return false;

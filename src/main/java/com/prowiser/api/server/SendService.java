@@ -14,8 +14,8 @@ public interface SendService {
     //推送 微信 消息
     void sendOtherWxMsg(int num,String access_token) throws Exception;
     //上传 保存数据
-    String uploadFile(MultipartFile file, String sign) throws IOException, JSONException ;
+    int uploadFile(MultipartFile file, String sign) throws IOException, JSONException ;
     //获取当前保存的数据条数
-    int getUserInfoNum();
+    int getUserInfoNum(String sign);
 
 }
