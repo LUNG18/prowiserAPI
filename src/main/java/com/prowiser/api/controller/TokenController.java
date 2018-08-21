@@ -1,6 +1,7 @@
 package com.prowiser.api.controller;
 
 import com.prowiser.api.server.impl.SendServiceImpl;
+import com.prowiser.api.utils.MD5Utils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class TokenController {
 
     @RequestMapping(value = "add",method = RequestMethod.GET)
     public String initToken(String key,String appid,String secret){
-        String token = DigestUtils.md5Hex(key.toUpperCase());
+        String token = MD5Utils.getMD5Token(appid+secret);
         if(!SendServiceImpl.tokens.contains(token)) {
             SendServiceImpl.tokens.add(token);
             FileWriter writer = null;

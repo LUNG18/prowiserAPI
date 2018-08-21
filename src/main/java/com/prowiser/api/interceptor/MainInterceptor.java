@@ -13,6 +13,9 @@ public class MainInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String url = request.getRequestURI();
+        if(url.startsWith("/sign")){
+            return true;
+        }
         //校验参数中的sign  防止重复提交
         String sign = request.getParameter("sign");
         if(sign==null && url.startsWith("/send/msg")){

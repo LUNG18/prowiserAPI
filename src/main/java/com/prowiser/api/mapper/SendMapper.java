@@ -5,6 +5,7 @@ import com.prowiser.api.pojo.SignDetail;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SendMapper {
 
